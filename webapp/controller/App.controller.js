@@ -1,11 +1,24 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
-  function (Controller, MessageToast) {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/ui/model/json/JSONModel",
+  ],
+  function (Controller, MessageToast, JSONModel) {
     "use strict";
     return Controller.extend("sap.ui.demo.walkthrough.App", {
+      onInit: function () {
+        // set the data model on the view
+        const oData = {
+          recipient: {
+            name: "UI5",
+          },
+        };
+        const oModel = new JSONModel(oData);
+        this.getView().setModel(oModel);
+      },
+
       onShowHello: function () {
-        // Show a native or vanailla JS alert
-        // alert("Hello there!");
         MessageToast.show("Hello there!");
       },
     });
